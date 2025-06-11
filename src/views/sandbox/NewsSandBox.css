@@ -1,0 +1,6 @@
+
+  #root,.ant-layout{
+    min-height: 100vh; /* 最小高度为视口高度，内容超过时自动扩展 */
+    display: flex; /* 启用Flex布局，让子元素（侧边栏、内容区域）垂直填充 */
+    flex-direction: column; /* 子元素垂直排列 */
+  }

@@ -1,0 +1,190 @@
+
+.login-background {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #e6f4fd 0%, #f0e9f9 100%);
+  padding: 20px;
+  position: relative; /* 为子元素定位 */
+  /* overflow: hidden;   /* 隐藏超出的碎片 */
+} 
+
+/* ========== 动态元素：旋转地球 ========== */
+.background-globe {
+  position: absolute;
+  width: 450px;        /* 地球大小 */
+  height: 450px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background: url('../../../public/earth.svg') no-repeat center/contain;
+  opacity: 0.05;        /* 半透明，不干扰表单 */
+  z-index: 2;          /* 低于表单 */
+  animation: rotateGlobe 20s linear infinite; /* 缓慢旋转 */
+  pointer-events: none;
+}
+
+/* 地球旋转动画 */
+@keyframes rotateGlobe {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ========== 动态元素：NEWS 碎片飘动 ========== */
+.news-fragment {
+  position: absolute;
+width: 60px; /* 碎片尺寸（更小） */
+height: 60px;
+background: url('../../../public/news.svg') no-repeat center/contain;
+z-index: 0; /* 背景层级 */
+animation: orbitGlobe 20s linear infinite; /* 环绕动画 */
+opacity: 0; /* 初始透明（渐显） */
+pointer-events: none;
+}
+/* 碎片初始位置（围绕地球随机分布） */
+/* 碎片初始位置（围绕地球随机分布，30个） */
+.fragment-1 { top: 15%; left: 22%; animation-delay: 0s; }
+.fragment-2 { top: 32%; left: 68%; animation-delay: 3s; }
+.fragment-3 { top: 55%; left: 18%; animation-delay: 6s; }
+.fragment-4 { top: 70%; left: 75%; animation-delay: 9s; }
+.fragment-5 { top: 85%; left: 42%; animation-delay: 12s; }
+.fragment-6 { top: 40%; left: 88%; animation-delay: 15s; }
+.fragment-7 { top: 28%; left: 10%; animation-delay: 18s; }
+.fragment-8 { top: 60%; left: 50%; animation-delay: 21s; }
+.fragment-9 { top: 12%; left: 58%; animation-delay: 24s; }
+.fragment-10 { top: 78%; left: 30%; animation-delay: 27s; }
+.fragment-11 { top: 38%; left: 72%; animation-delay: 30s; }
+.fragment-12 { top: 52%; left: 25%; animation-delay: 33s; }
+.fragment-13 { top: 82%; left: 60%; animation-delay: 36s; }
+.fragment-14 { top: 18%; left: 80%; animation-delay: 39s; }
+.fragment-15 { top: 45%; left: 15%; animation-delay: 42s; }
+.fragment-16 { top: 65%; left: 48%; animation-delay: 45s; }
+.fragment-17 { top: 23%; left: 35%; animation-delay: 48s; }
+.fragment-18 { top: 73%; left: 85%; animation-delay: 51s; }
+.fragment-19 { top: 30%; left: 5%; animation-delay: 54s; }
+.fragment-20 { top: 58%; left: 90%; animation-delay: 57s; }
+.fragment-21 { top: 88%; left: 20%; animation-delay: 60s; }
+.fragment-22 { top: 10%; left: 40%; animation-delay: 63s; }
+.fragment-23 { top: 43%; left: 65%; animation-delay: 66s; }
+.fragment-24 { top: 68%; left: 12%; animation-delay: 69s; }
+.fragment-25 { top: 25%; left: 77%; animation-delay: 72s; }
+.fragment-26 { top: 50%; left: 33%; animation-delay: 75s; }
+.fragment-27 { top: 75%; left: 55%; animation-delay: 78s; }
+.fragment-28 { top: 35%; left: 83%; animation-delay: 81s; }
+.fragment-29 { top: 17%; left: 28%; animation-delay: 84s; }
+.fragment-30 { top: 80%; left: 70%; animation-delay: 87s; }
+/* NEWS 碎片飘动动画（水平平移 + 上下浮动） */
+@keyframes orbitGlobe {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg) translate(160px) rotate(0deg); /* 地球半径160px */
+  }
+  20% { opacity: 0.3; } /* 渐显 */
+  80% { opacity: 0.3; } /* 保持透明度 */
+  100% {
+    opacity: 0;
+    transform: rotate(360deg) translate(160px) rotate(-360deg); /* 绕中心旋转 */
+  }
+}
+
+/* 表单容器 */
+.formContainer {
+  background: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  max-width: 420px;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(100, 80, 180, 0.1);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.formContainer:hover {
+  transform: translateY(-4px);
+}
+
+
+/* 登录标题 */
+.logintitle {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 32px;
+  position: relative;
+}
+.logintitle::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #7a5af8;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+/* ========== 表单核心修复 ========== */
+.ant-form-item {
+  margin-bottom: 24px; /* 给错误提示留空间 */
+}
+
+/* 统一输入框和密码框外层容器的样式 */
+.ant-input,
+.ant-input-affix-wrapper {
+  height: 44px;
+  line-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* 交互状态统一 */
+.ant-input:hover,
+.ant-input:focus,
+.ant-input-affix-wrapper:hover,
+.ant-input-affix-wrapper:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+}
+
+/* 错误状态统一 */
+.ant-form-item-has-error .ant-input,
+.ant-form-item-has-error .ant-input-affix-wrapper {
+  border-color: #ff4d4f !important;
+}
+.ant-form-item-explain-error {
+  color: #ff4d4f;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+/* 按钮样式 */
+.ant-btn-primary {
+  height: 32px;
+  border-radius: 8px;
+  background: #1677FF;
+  border-color: #1677FF;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background: #2980b9;
+  border-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+/* 记住我样式 */
+.ant-checkbox-wrapper {
+  color: #666;
+  font-size: 14px;
+}
+
+.login-btn{
+  height: 44px;
+}

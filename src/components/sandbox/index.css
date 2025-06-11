@@ -1,0 +1,33 @@
+.logo {
+    line-height: 40px; /* 调整行高增加视觉空间 */
+    font-size: 25px; /* 增大字体 */
+    font-weight: 600; /* 加粗字体 */
+    background: linear-gradient(45deg, #40a9ff 20%, #722ed1 80%); /* 蓝紫色渐变 */
+    -webkit-background-clip: text; /* 关键：文字作为背景裁剪区域 */
+    background-clip: text; 
+    color: transparent; /* 文字颜色透明，显示背景 */
+    text-shadow: 0 2px 8px rgba(114, 46, 209, 0.2); /* 渐变投影 */
+    margin: 12px; /* 调整边距 */
+    position: relative; /* 用于伪元素 */
+    overflow: hidden; /* 隐藏溢出 */
+    display: flex;          /* 启用 Flex 布局 */
+  flex-direction: column;
+  }
+  
+  /* 可选：添加光效动画 */
+  .logo::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(30deg);
+    animation: lightShine 4s linear infinite;
+  }
+  
+  @keyframes lightShine {
+    from { transform: rotate(30deg) translateX(-100%); }
+    to { transform: rotate(30deg) translateX(100%); }
+  }

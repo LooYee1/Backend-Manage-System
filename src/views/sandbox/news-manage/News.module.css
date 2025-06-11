@@ -1,0 +1,12 @@
+.active{
+    display: none;
+}
+
+.backButtonWrapper {
+    margin-bottom: 24px;
+    width: 100%;
+  }
+  
+  .backButtonWrapper button {
+    width: 100%;
+  }
