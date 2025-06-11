@@ -1,70 +1,141 @@
-# Getting Started with Create React App
+以下是已经按照Markdown格式编写的内容，它已经符合你之前要求的Markdown格式，如果你有特定的修改需求，比如内容上的调整、格式细节的修改等，请随时告诉我。
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React 新闻管理系统项目
 
-## Available Scripts
+## 一、项目简介
+本项目是一个基于 React 的新闻管理系统，集成了用户管理、权限管理、新闻发布与审核等功能。它使用了 React 18 及 React Router v6 等技术，结合 Ant Design 组件库，提供了一个简洁易用的界面。同时，项目使用 JSON Server 作为后端模拟数据，方便开发和测试。
 
-In the project directory, you can run:
+## 二、项目功能
+### 1. 用户管理
+- 不同角色（超级管理员、区域管理员、编辑）的用户登录和权限控制。
+- 用户列表展示，可按区域、角色名称等条件筛选。
+- 用户状态（启用/禁用）的切换。
+- 用户的添加、删除和更新操作。
 
-### `npm start`
+### 2. 权限管理
+- 角色列表展示，可对角色进行删除和权限编辑。
+- 权限列表展示，可对权限进行删除和页面开关设置。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 3. 新闻管理
+- 新闻的添加、编辑和删除操作。
+- 新闻草稿的保存和提交审核。
+- 新闻的审核与驳回操作。
+- 新闻的发布和撤销发布操作。
+- 新闻的预览和详情展示。
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 4. 游客浏览
+- 游客可以直接浏览新闻列表和详情。
 
-### `npm test`
+## 三、项目结构
+```
+src
+├── components
+│   ├── sandbox
+│   │   └── NewsRouter.js
+│   └── user-manage
+│       └── UserForm.js
+├── router
+│   └── IndexRouter.js
+├── store
+│   └── store.js
+├── util
+│   └── http.js
+├── views
+│   ├── login
+│   │   └── Login.js
+│   ├── news
+│   │   ├── Detail.js
+│   │   └── News.js
+│   └── sandbox
+│       ├── audit-manage
+│       │   ├── Audit.js
+│       │   └── AuditList.js
+│       ├── home
+│       │   └── Home.js
+│       ├── news-manage
+│       │   ├── NewsAdd.js
+│       │   ├── NewsDraft.js
+│       │   ├── NewsCategory.js
+│       │   ├── NewsPreview.js
+│       │   └── NewsUpdate.js
+│       ├── nopermission
+│       │   └── Nopermission.js
+│       ├── publish-manage
+│       │   ├── Unpublished.js
+│       │   ├── Published.js
+│       │   └── Sunset.js
+│       ├── right-manage
+│       │   ├── RoleList.js
+│       │   └── RightList.js
+│       └── user-manage
+│           └── UserList.js
+├── App.js
+├── App.test.js
+├── index.css
+└── index.js
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 四、技术栈
+- **前端框架**：React 18
+- **路由管理**：React Router v6
+- **状态管理**：Redux
+- **组件库**：Ant Design
+- **数据模拟**：JSON Server
+- **日期处理**：Moment.js
 
-### `npm run build`
+## 五、环境准备
+- **Node.js**：确保已经安装 Node.js（推荐版本 14.x 及以上）。
+- **npm 或 yarn**：用于安装项目依赖。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 六、安装与运行
+### 1. 克隆项目
+```bash
+git clone [项目仓库地址]
+cd [项目目录]
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. 安装依赖
+```bash
+npm install
+# 或者使用 yarn
+yarn install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. 启动 JSON Server
+```bash
+npx json-server --watch db.json --port 8000
+```
 
-### `npm run eject`
+### 4. 启动前端项目
+```bash
+npm start
+# 或者使用 yarn
+yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 5. 访问项目
+打开浏览器，访问 `http://localhost:3000`。
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 七、配置说明
+### 1. 后端接口地址
+项目使用 JSON Server 模拟后端接口，接口地址为 `http://localhost:8000`。如果需要修改后端地址，可以在 `src/util/http.js` 中进行配置。
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2. 路由配置
+路由配置文件为 `src/router/IndexRouter.js` 和 `src/components/sandbox/NewsRouter.js`，可以根据需要修改路由规则。
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 3. 权限配置
+权限信息存储在 `localStorage` 中，根据用户角色动态显示不同的路由和操作按钮。可以在 `src/components/sandbox/NewsRouter.js` 中修改权限验证逻辑。
 
-## Learn More
+## 八、注意事项
+- 项目使用 JSON Server 模拟后端数据，数据存储在 `db.json` 文件中。在开发过程中，对数据的修改会直接影响该文件。
+- 项目中的用户登录信息存储在 `localStorage` 中，在实际生产环境中需要使用更安全的方式进行存储和验证。
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 九、贡献指南
+如果你想为项目做出贡献，可以按照以下步骤进行：
+1. Fork 项目仓库。
+2. 创建新的分支：`git checkout -b feature/your-feature`。
+3. 提交代码并推送：`git push origin feature/your-feature`。
+4. 提交 Pull Request。
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 十、许可证
+本项目采用 [MIT 许可证](LICENSE)。
