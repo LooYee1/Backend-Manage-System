@@ -107,33 +107,50 @@ export default function Home() {
 
         option = {
             title: {
-                text: '当前用户新闻分类图示',
-                // subtext: '纯属虚构',
-                left: 'center'
+              text: '当前用户新闻分类图示',
+              left: 'center'
             },
             tooltip: {
-                trigger: 'item'
+              trigger: 'item'
             },
+            // 关键：图例放到底部，水平居中
             legend: {
-                orient: 'vertical',
-                left: 'left',
+              orient: 'horizontal', // 水平排列
+              bottom: '1%',         // 距离底部10%
+              left: 'center',        // 水平居中
+              itemGap: 20            // 图例项之间的间距
             },
             series: [
-                {
-                    name: '发布数量',
-                    type: 'pie',
-                    radius: '50%',
-                    data: list,
-                    emphasis: {
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
+              {
+                name: '发布数量',
+                type: 'pie',
+                radius: '50%',
+                data: list,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                // 标签配置：让ECharts自动布局（去掉强制position，改用默认智能布局）
+                label: {
+                  show: true,
+                  position: 'outside', // 标签放外部
+                  fontSize: 12,
+                  formatter: '{b}: {c}'
+                },
+                // 引导线配置：加长+弯曲，让标签远离饼图
+                labelLine: {
+                  show: true,
+                  length: 30,   // 第一段长度（从饼图到引导线拐点）
+                  length2: 40,  // 第二段长度（从拐点到标签）
+                  smooth: 0.5   // 引导线弯曲度
+                },
+                minAngle: 10
+              }
             ]
-        };
+          };
 
         option && myChart.setOption(option);
 

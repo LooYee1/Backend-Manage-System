@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 
 export default function Detail(props) {
     const [newsInfo, setnewsInfo] = useState(null)
-    const {id}=useParams
+    const {id}=useParams()
     
     useEffect(() => {
         // console.log()
