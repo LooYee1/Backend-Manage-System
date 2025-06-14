@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import Home from '../../views/sandbox/home/Home'
-import Nopermission from '../../views/sandbox/nopermission/Nopermission'
-import RightList from '../../views/sandbox/right-manage/RightList'
-import RoleList from '../../views/sandbox/right-manage/RoleList'
-import UserList from '../../views/sandbox/user-manage/UserList'
-import { Route,Routes } from 'react-router-dom'
-import NewsAdd from '../../views/sandbox/news-manage/NewsAdd'
-import NewsDraft from '../../views/sandbox/news-manage/NewsDraft'
-import NewsCategory from '../../views/sandbox/news-manage/NewsCategory'
-import NewsPreview from  '../../views/sandbox/news-manage/NewsPreview'
-import Audit from '../../views/sandbox/audit-manage/Audit'
-import AuditList from '../../views/sandbox/audit-manage/AuditList'
-import Unpublished from '../../views/sandbox/publish-manage/Unpublished'
-import Published from '../../views/sandbox/publish-manage/Published'
-import Sunset from '../../views/sandbox/publish-manage/Sunset'
+import React, { useEffect, useState,Suspense } from 'react'
+import { Route,Routes,useNavigate,Navigate } from 'react-router-dom'
 import axios from 'axios'
-import NewsUpdate from '../../views/sandbox/news-manage/NewsUpdate'
-import { useNavigate } from 'react-router-dom'
-import { Navigate } from 'react-router-dom';
+
+const Home = React.lazy(() => import('../../views/sandbox/home/Home'));
+const Nopermission = React.lazy(() => import('../../views/sandbox/nopermission/Nopermission'));
+const RightList = React.lazy(() => import('../../views/sandbox/right-manage/RightList'));
+const RoleList = React.lazy(() => import('../../views/sandbox/right-manage/RoleList'));
+const UserList = React.lazy(() => import('../../views/sandbox/user-manage/UserList'));
+const NewsAdd = React.lazy(() => import('../../views/sandbox/news-manage/NewsAdd'));
+const NewsDraft = React.lazy(() => import('../../views/sandbox/news-manage/NewsDraft'));
+const NewsCategory = React.lazy(() => import('../../views/sandbox/news-manage/NewsCategory'));
+const NewsPreview = React.lazy(() => import('../../views/sandbox/news-manage/NewsPreview'));
+const Audit = React.lazy(() => import('../../views/sandbox/audit-manage/Audit'));
+const AuditList = React.lazy(() => import('../../views/sandbox/audit-manage/AuditList'));
+const Unpublished = React.lazy(() => import('../../views/sandbox/publish-manage/Unpublished'));
+const Published = React.lazy(() => import('../../views/sandbox/publish-manage/Published'));
+const Sunset = React.lazy(() => import('../../views/sandbox/publish-manage/Sunset'));
+const NewsUpdate = React.lazy(() => import('../../views/sandbox/news-manage/NewsUpdate'));
+
 export default function NewsRouter(){
     const {role:{rights}}=JSON.parse(localStorage.getItem("token"))
     const navigate = useNavigate()
@@ -59,7 +59,9 @@ export default function NewsRouter(){
             return rights.includes(item.key)
         }
     return(
+        <Suspense fallback={<div>加载中...</div>}>
         <Routes>
+           
         {
         BackRouteList.map(item => {
             const TargetComponent = LocalRouterMap[item.key];
@@ -78,8 +80,9 @@ export default function NewsRouter(){
       
       {/* 无权限或404 */}
       <Route path="*" element={<Nopermission />} />
+      
             </Routes>
-    
+            </Suspense>
     )
 
 

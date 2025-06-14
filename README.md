@@ -133,6 +133,8 @@ src
 ### 测试与性能优化
 - **Jest**：JavaScript 测试框架，用于编写单元测试和集成测试，确保代码的质量和稳定性。
 - **React Testing Library**：用于测试 React 组件，模拟用户交互和验证组件行为。
+- **React Lazy**：更新实现了路由的懒加载，大幅度提升了用户的体验。
+
 
 ### 路由与导航
 - **React Router v6**：实现单页面应用的路由管理，支持动态路由、嵌套路由和路由守卫等功能。
@@ -216,6 +218,16 @@ export default function IndexRouter() {
 2. 创建新的分支：`git checkout -b feature/your-feature`。
 3. 提交代码并推送：`git push origin feature/your-feature`。
 4. 提交 Pull Request。
+
+
+| 文件夹   | 说明                     |
+|----------|--------------------------|
+| `db`     | 模拟数据库的 JSON 数据   |
+| `src`    | 前端源码目录             |
+| `README`    | 项目介绍             |
+| `public`    | 项目使用资源             |
+| `docs/images`    | 项目效果截图             |
+
 
 ## 十、许可证
 本项目采用 [MIT 许可证](LICENSE)。
